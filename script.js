@@ -1,10 +1,33 @@
 let screen = document.getElementById('screen');
-buttons = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button');
+let body = document.getElementById("bd");
 let screenValue = '';
-screen.addEventListener('keydown', function (e) {
+// screen.addEventListener('keydown',)
+body.addEventListener('keydown',(e)=>{
     if (e.key == 'Enter') {
         screenValue = screen.value;
         screen.value = eval(screenValue);
+        screenValue = ''
+    }
+    else if (e.key >= '0' && e.key <= '9') {
+        screenValue += e.key;
+        screen.value = screenValue;
+        console.log(screenValue);
+        console.log(screen.value);
+    }
+    else if (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') {
+        buttonText = e.key;
+        screenValue += buttonText;
+        screen.value = screenValue;
+    }
+    else if (e.key == 'Backspace') {
+        const last = screenValue.length;
+        screenValue = screenValue.slice(0, last - 1);
+        console.log(screenValue);
+        screen.value = screenValue;
+    }
+    else {
+        console.log(e.key);
     }
 });
 for (item of buttons) {
@@ -21,7 +44,14 @@ for (item of buttons) {
         }
         else if (buttonText == '=') {
             screen.value = eval(screenValue);
+            screenValue = ''
         }
+        // else if(buttonText = '<-'){
+        //     const last = screenValue.length;
+        //     screenValue = screenValue.slice(0, last - 1);
+        //     console.log(screenValue);
+        //     screen.value = screenValue;
+        // }
         else {
             screenValue += buttonText;
             screen.value = screenValue;
