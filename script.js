@@ -2,6 +2,7 @@ let screen = document.getElementById('screen');
 let buttons = document.querySelectorAll('button');
 let body = document.getElementById("bd");
 let screenValue = '';
+document.body.style.zoom = "80%";
 body.addEventListener('keydown',(e)=>{
     if (e.key == 'Enter') {
         screenValue = screen.value;
