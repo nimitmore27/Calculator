@@ -74,6 +74,8 @@ function calculate() {
 function errorsolver() {
     if (value.includes("undefined"))
         value = value.replace('undefined', '');
+    if (value.includes('Infinity'))
+        value = value.replace('Infinity','');
     len = value.length;
 }
 
