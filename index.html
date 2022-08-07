@@ -3,53 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <title>Cal-C</title>
+    <script src="https://kit.fontawesome.com/f462297f0f.js" crossorigin="anonymous"></script>
 </head>
 
-<body id="bd">
+<body>
+    <header>Calculator</header>
     <div class="container">
-            <h1>Calculator</h1>
-        <div class="calculator">
-            <input type="text" name="screen" id="screen" readonly>
-            <table>
-                <tr>
-                    <td><button>(</button></td>
-                    <td><button>)</button></td>
-                    <td><button>C</button></td>
-                    <td><button>%</button></td>
-                </tr>
-                <tr>
-                    <td><button>7</button></td>
-                    <td><button>8</button></td>
-                    <td><button>9</button></td>
-                    <td><button>x</button></td>
-                </tr>
-                <tr>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td><button>-</button></td>
-                </tr>
-                <tr>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td><button>+</button></td>
-                </tr>
-                <tr>
-                    <td><button>0</button></td>
-                    <td><button>.</button></td>
-                    <td><button>/</button></td>
-                    <td><button>=</button></td>
-                </tr>
-            </table>
+        <div class="display">
+            <input type="text" name="inpdisplay" id="inpdisplay" readonly>
+        </div>
+        <div class="keypad">
+            <div class="up comman">
+                <button id="clear" class="green">AC</button>
+                <button class="print blue">( )</button>
+                <button class="print blue">%</button>
+                <button class="print blue">/</button>
+            </div>
+            <div class="midleft comman">
+                <button class="print lightbg">7</button>
+                <button class="print lightbg">8</button>
+                <button class="print lightbg">9</button>
+                <button class="print lightbg">4</button>
+                <button class="print lightbg">5</button>
+                <button class="print lightbg">6</button>
+                <button class="print lightbg">1</button>
+                <button class="print lightbg">2</button>
+                <button class="print lightbg">3</button>
+                <button class="print lightbg">0</button>
+                <button class="print lightbg">.</button>
+                <button id="bkspc" class="lightbg"><i class="fa-solid fa-delete-left"></i></button>
+            </div>
+            <div class="right comman">
+                <button class="print blue">*</button>
+                <button class="print blue">-</button>
+                <button class="print blue">+</button>
+                <button id="equals">=</button>
+            </div>
         </div>
     </div>
-
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 
 </html>

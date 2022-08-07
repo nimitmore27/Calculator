@@ -1,56 +1,136 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
-
-body {
-    background: #0f0e0e;
-    font-family: 'Ubuntu', sans-serif;
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    color: var(--font);
+    font-weight: bold;
 }
 
-h1 {
-    font-size: 50px;
+:root {
+    /* Google Calculator Colors */
+    /* --darkbg: #1f2024;
+    --lightbg: #2c3033;
+    --bluebg: #174fa6;
+    --greenbg: #255b42;
+    --font: #eaebee;
+    --border: #eaebee;*/
+
+    --darkbg: rgb(14, 15, 46);
+    --lightbg: #a19fe6;
+    --font : #0e0f23;
+    --border: #00ffff;
+    
+}
+
+body {
+    background-color: var(--font);
+    text-align: center;
+}
+
+header {
+    font-size: 3rem;
     font-weight: bolder;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00ffff;
+    color: var(--border);
     text-shadow: 1px 1px #fff;
-    margin-bottom: 50px;
+    user-select: none;
 }
 
 .container {
-    text-align: center;
-    margin-top: 23px
-}
-
-input {
-    border-radius: 21px;
-    border: 3px solid #00ffff;
-    font-size: 34px;
-    height: 65px;
-    width: 410px;
-    outline: none;
-    margin-bottom: 20px;
-}
-
-.calculator {
-    background-color: rgb(14 15 46);
-    padding: 23px;
-    border-radius: 29px;
-    display: inline-block;
-    box-shadow: 3px 2px 30px 5px #00ffff;
-}
-
-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(320px, 80vw, 500px);
+    height: clamp(500px, 80vh, 850px);
     margin: auto;
+    box-shadow: 3px 2px 30px 5px var(--border);
+    
+    border-radius: 20px;
+    padding-bottom: 15px;
+    margin-top: 30px;
+}
+
+.display {
+    width: 100%;
+    height: 20%;
+    background-color: var(--darkbg);
+    border-top-left-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+}
+
+#inpdisplay {
+    margin: 10px;
+    height: 80%;
+    width: 80%;
+    font-size: clamp(2em, 3em, 4em);
+    /* background-color: var(--lightbg); for google color scheme */
+    border-color: var(--lightbg);
+    outline: none;
+    /* text-align: right; */
+    cursor: default;
+    border-radius: 0.4em;
+}
+
+.keypad {
+    display: grid;
+    width: 100%;
+    height: 80%;
+    background-color: var(--darkbg);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 button {
-    border-radius: 20px;
-    font-size: 40px;
-    background: #a19fe6;
-    width: 90px;
-    height: 85px;
-    margin: 6px;
-    box-shadow: 3px 2px 1px 0px #00ffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    width: 4em;
+    aspect-ratio: 1/1;
+    font-size: 1.2em;
+    border: 1px solid var(--darkbg);
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: var(--lightbg);
+    box-shadow: 3px 2px 1px 0px var(--border);
+    color : var(--darkbg);    
 }
 
 button:hover {
     background-color: #fff;
 }
+
+.up {
+    display: grid;
+    grid-area: 1 / 1 / 2 / 5;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.midleft {
+    display: grid;
+    grid-area: 2/1/6/4;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.right {
+    display: grid;
+    grid-area: 2/4/6/5;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+/* Google Calculator Color Scheme */
+/* .blue {
+    background-color: var(--bluebg);
+}
+
+.green {
+    background-color: var(--greenbg);
+}
+
+.lightbg {
+    background-color: var(--lightbg);
+}
+
+#equals {
+    background-color: var(--bluebg);
+} */
