@@ -1,108 +1,83 @@
-let body = document.querySelector('body');
+const display = document.querySelector('.display');
+const btn = Array.from(document.querySelector('.keypad').children);
+const equal = document.querySelector('.equal');
+const allops = ['+', '-', '*', '/', '%'];
+const bk = '<i class="fa-solid fa-delete-left"></i>';
+let value = ''
+let brackets = 0;
 
-let display = document.getElementById('inpdisplay');
-
-let numop = Array.from(document.querySelectorAll('.print'));
-let bkspc = document.getElementById('bkspc');
-let clearbtn = document.getElementById("clear");
-let equals = document.getElementById('equals');
-
-let value = '';
-let len = 0;
-let brac = 0;
-window.onload = () => {
-    display.focus();
-    cleardisplay();
-}
-numop.forEach(element => {
-    element.onclick = () => {
-        append(element.innerText)
-    };
-});
-
-body.addEventListener('click', () => {
-    display.focus();
+document.addEventListener('keydown', (e) => {
+    input(e.key);
 })
-
-display.addEventListener('keydown', (e) => {
-    if ((e.key >= 0 && e.key <= 9) || (e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/' || e.key == '.'))
-        append(e.key);
-    if (e.key == 'Backspace')
-        pop();
-    if (e.key == 'Enter')
-        calculate();
+btn.forEach(element => {
+    element.addEventListener('click', (element) => {
+        input(element.target.innerHTML);
+    })
 });
 
-bkspc.onclick = pop;
-clearbtn.onclick = cleardisplay;
-equals.onclick = calculate;
+equal.onclick = solve;
 
-function append(element) {
-    errorsolver();
-    if (len == 0 && (element == 0 || element == ' ' || element == '/' || element == '*')) return;
-    if ((element == '*' || element == '/') && (value[len - 1] == '+' || value[len - 1] == '-')) return;
-    if ((element == '+' || element == '-') && (value[len - 1] == '+' || value[len - 1] == '-' || value[len - 1] == '*' || value[len - 1] == '/'))
-        len++, brac++, value += '(';
-    if (element == '( )') {
-        bracket();
-        return;
+function input(text) {
+    if (text >= '0' && text <= '9' || text == '.') {
+        if(value.toString().endsWith(')'))
+            value += '*';
+        updatedisplay(text);
     }
-    if (value[len - 1] == ')' && element >= 0 && element <= 9)
-        len++, value += '*'
-    len++, value += element, display.value = value;
+    else if (allops.includes(text))
+        operators(text);
+    else if (text == '(' || text == ')' || text == '( )')
+        checkbracket();
+    else if (text == 'Backspace' || text == bk)
+        backspace();
+    else if (text == 'Enter')
+        solve();
+    else if (text == 'AC' || text == 'Delete') {
+        display.value = '';
+        value = ''
+        brackets = 0;
+    }
+}
+function operators(op) {
+    if ((value == '' || value.toString().endsWith('/') || value.toString().endsWith('*') || value.toString().endsWith('(')) && (op == '/' || op == '*' || op == '%')) return;
+    if ((op == '*' || op == '/') && (value.toString().endsWith('+') || value.toString().endsWith('-'))) return;
+    if ((op == '+' || op == '-') && (allops.includes(value[value.toString().length - 1])))
+        brackets++, value += '(';
+    updatedisplay(op);
 }
 
-function pop() {
-    value[len - 1] == ')' ? brac++ : value[len - 1] == '(' ? brac-- : 0;
-    len--;
-    value = value.slice(0, len);
+function backspace() {
+    value.toString().endsWith(')') ? brackets++ : value.toString().endsWith('(') ? brackets-- : 0;
+    value = value.toString().slice(0, value.toString().length - 1);
+    display.value = value;
+}
+function solve() {
+    if (value == '') return;
+    closebracket();
+    value = eval(value);
     display.value = value;
 }
 
-function cleardisplay() {
-    value = '', display.value = '', len = 0, brac = 0;
-}
-
-function calculate() {
-    errorsolver();
-    let ans = eval(value);
-    display.value = ans;
-    value = display.value;
-    len = value.length;
-}
-
-function errorsolver() {
-    if (value.includes("undefined"))
-        value = value.replace('undefined', '');
-    if (value.includes('Infinity'))
-        value = value.replace('Infinity','');
-    len = value.length;
-}
-
 function checkbracket() {
-    let count = 0;
-    for (let iterator of value) {
-        if (iterator == '(')
-            count++;
-        if (iterator == ')')
-            count--;
-    }
-    if (count == 0)
-        return calculate();
+    if ((brackets > 0) && (!isNaN(value[value.toString().length - 1]) || (value.toString().endsWith(')')))) {
+        updatedisplay(')');
+        brackets--;
+        return ;
+    } else if (!isNaN(value[value.toString().length - 1]) || (value.toString().endsWith(')')))
+        updatedisplay('*(');
     else
-        return false
-
+        updatedisplay('(');
+    brackets++;
+    return 
 }
-function bracket() {
-    if ((brac > 0) && (value[len - 1] >= 0 && value[len - 1] <= 9 || (value[len - 1] == ')'))) {
-        value += ')', len++, display.value = value;
-        brac--;
-    } else if (value[len - 1] >= 0 && value[len - 1] <= 9 || value[len - 1] == ')') {
-        value = value + '*(', len++, display.value = value;
-        brac++;
-    }
-    else {
-        value = value + '(', len++, display.value = value;
-        brac++;
+
+function updatedisplay(text) {
+    value += text;
+    display.value = value;
+}
+
+function closebracket() {
+    while (brackets > 0) {
+        updatedisplay(')');
+        brackets--;
     }
 }

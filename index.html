@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="calc-favicon.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f462297f0f.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-    <header>Calculator</header>
-    <div class="container">
-        <div class="display">
-            <input type="text" name="inpdisplay" id="inpdisplay" readonly>
-        </div>
+    <div class="calculator-body">
+        <input type="text" class="display" name="display" title="Result will be displayed here" readonly>
         <div class="keypad">
-            <div class="up comman">
-                <button id="clear" class="green">AC</button>
-                <button class="print blue">( )</button>
-                <button class="print blue">%</button>
-                <button class="print blue">/</button>
-            </div>
-            <div class="midleft comman">
-                <button class="print lightbg">7</button>
-                <button class="print lightbg">8</button>
-                <button class="print lightbg">9</button>
-                <button class="print lightbg">4</button>
-                <button class="print lightbg">5</button>
-                <button class="print lightbg">6</button>
-                <button class="print lightbg">1</button>
-                <button class="print lightbg">2</button>
-                <button class="print lightbg">3</button>
-                <button class="print lightbg">0</button>
-                <button class="print lightbg">.</button>
-                <button id="bkspc" class="lightbg"><i class="fa-solid fa-delete-left"></i></button>
-            </div>
-            <div class="right comman">
-                <button class="print blue">*</button>
-                <button class="print blue">-</button>
-                <button class="print blue">+</button>
-                <button id="equals">=</button>
-            </div>
+            <button class="bggreen clear" title="Clear">AC</button>
+            <button class="bglightblue brackets" title="Bracket">( )</button>
+            <button class="bglightblue" title="Logical Modulo">%</button>
+            <button class="bglightblue" title="Division">/</button>
+            <button class="bgblack" title="7">7</button>
+            <button class="bgblack" title="8">8</button>
+            <button class="bgblack" title="9">9</button>
+            <button class="bglightblue" title="Multiply">*</button>
+            <button class="bgblack" title="4">4</button>
+            <button class="bgblack" title="5">5</button>
+            <button class="bgblack" title="6">6</button>
+            <button class="bglightblue" title="Minus">-</button>
+            <button class="bgblack" title="1">1</button>
+            <button class="bgblack" title="2">2</button>
+            <button class="bgblack" title="3">3</button>
+            <button class="bglightblue" title="Plus">+</button>
+            <button class="bgblack" title="0">0</button>
+            <button class="bgblack" title="Decimal Point">.</button>
+            <button class="bgblack back" title="Backspace"><i class="fa-solid fa-delete-left"></i></button>
+            <button class="equal" title="Calculate">=</button>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
-
 </html>
