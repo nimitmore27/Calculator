@@ -8,6 +8,7 @@ let brackets = 0;
 
 document.addEventListener('keydown', (e) => {
     input(e.key);
+    e.preventDefault();
 })
 btn.forEach(element => {
     element.addEventListener('click', (element) => {
